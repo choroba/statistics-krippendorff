@@ -110,10 +110,9 @@ sub jaccard_index($s1, $s2) {
 
 =head1 EXPORT
 
-A list of functions that can be exported. You can delete this section if you
-don't export anything, such as for a purely object-oriented module.
+All the following subroutines can be exported, nothing is exported by default.
 
-=head1 SUBROUTINES/METHODS
+=head1 SUBROUTINES
 
 =head2 alpha($units, $delta)
 
