@@ -97,24 +97,50 @@ sub jaccard_index($s1, $s2) {
 
 =head1 SYNOPSIS
 
-  use Statistics::Krippendorff qw{ alpha };
+  use Statistics::Krippendorff qw{ alpha delta_nominal };
 
   my @units = ({rater1 => 1, rater2 => 1},
                {rater1 => 2, rater2 => 2, rater3 => 1},
                {rater2 => 3, rater3 => 2});
-  my $alpha = alpha(\@units, \&delta_nominal);
-  my $alpha = alpha(\@units);  # Same as above, default delta function.
+  my $alpha1 = alpha(\@units, \&delta_nominal);
+  my $alpha2 = alpha(\@units);  # Same as above, default delta function.
 
-  my $alpha_interval = alpha(\@units, sub ($v0, $v1) { ($v0 - $v1) ** 2 });
+  my $alpha_interval = alpha([[1, 1], [2,2,1], [undef,3,2]],
+                             sub ($v0, $v1) { ($v0 - $v1) ** 2 });
 
 =head1 EXPORT
 
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
+A list of functions that can be exported. You can delete this section if you
+don't export anything, such as for a purely object-oriented module.
 
 =head1 SUBROUTINES/METHODS
 
-=head2 alpha
+=head2 alpha($units, $delta)
+
+Returns Krippendorff's alpha for the given units.
+
+The first argument must be an array reference. There are two supported types
+of units (all the units must be of the same type).
+
+=over
+
+=item 1.
+
+Each unit is a hash reference of the form
+
+  { referer1 => 'value1', referer3 => 'value2', ... }
+
+=item 2.
+
+Each unit is an array reference of the form
+
+  ['value1', undef, 'value2']
+
+=back
+
+In both the cases, there must be at least two values in each unit.
+
+The second argument is optional, defaults to delta_nominal (see below).
 
 =head2 delta_nominal
 
