@@ -29,7 +29,7 @@ plan 3;
                  [3, undef, 4]);
 
     is alpha(\@units), float(0.691, precision => 3),
-        'Wikipedia example array';
+        'Wikipedia example array, default delta';
     is alpha(\@units, \&delta_interval), float(0.811, precision => 3),
         'Wikipedia example interval';
 }
