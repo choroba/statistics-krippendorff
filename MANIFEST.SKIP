@@ -1,0 +1,10 @@
+^MANIFEST\.SKIP$
+^Makefile(?:\.old)?$
+^\.git/
+^\.gitignore$
+^\.github/workflows/
+^blib/
+^MYMETA\.(?:json|yml)$
+^pm_to_blib$
+^cpanfile$
+~$

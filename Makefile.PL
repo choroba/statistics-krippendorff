@@ -21,12 +21,12 @@ my %WriteMakefileArgs = (
     },
     TEST_REQUIRES => {
         'Test2::V0' => '0',
+        'FindBin' => 0,
     },
     PREREQ_PM => {
         'Moo' => 0,
         'namespace::clean' => 0,
         'List::Util' => 0,
-        'FindBin' => 0,
         'strict' => 0,
         'warnings' => 0,
         'experimental' => 0,
