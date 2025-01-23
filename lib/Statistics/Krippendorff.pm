@@ -281,9 +281,13 @@ E. Choroba, C<< <choroba at cpan.org> >>
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-statistics-krippendorff at rt.cpan.org>, or through
-the web interface at L<https://rt.cpan.org/NoAuth/ReportBug.html?Queue=Statistics-Krippendorff>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
+Please report any bugs or feature requests to
+L<https://github.com/choroba/statistics-krippendorff/issues>, via
+e-mail to C<bug-statistics-krippendorff at rt.cpan.org>, or through
+the web interface at
+L<https://rt.cpan.org/NoAuth/ReportBug.html?Queue=Statistics-Krippendorff>.
+I will be notified, and then you'll automatically be notified of
+progress on your bug as I make changes.
 
 =head1 SUPPORT
 
@@ -296,9 +300,9 @@ You can also look for information at:
 
 =over 4
 
-=item * RT: CPAN's request tracker (report bugs here)
+=item * GitHub (report bugs here)
 
-L<https://rt.cpan.org/NoAuth/Bugs.html?Dist=Statistics-Krippendorff>
+L<https://github.com/choroba/statistics-krippendorff>
 
 =item * CPAN Ratings
 
@@ -307,6 +311,10 @@ L<https://cpanratings.perl.org/d/Statistics-Krippendorff>
 =item * Search CPAN
 
 L<https://metacpan.org/release/Statistics-Krippendorff>
+
+=item * RT: CPAN's request tracker (you can report bugs here, too)
+
+L<https://rt.cpan.org/NoAuth/Bugs.html?Dist=Statistics-Krippendorff>
 
 =back
 

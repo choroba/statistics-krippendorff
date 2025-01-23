@@ -21,17 +21,18 @@ perldoc command.
 
 You can also look for information at:
 
-    RT, CPAN's request tracker (report bugs here)
-        https://rt.cpan.org/NoAuth/Bugs.html?Dist=Statistics-Krippendorff
-
-    CPAN Ratings
-        https://cpanratings.perl.org/d/Statistics-Krippendorff
+    GitHub (report bugs here)
+        https://github.com/choroba/statistics-krippendorff
 
     Search CPAN
         https://metacpan.org/release/Statistics-Krippendorff
 
-    GitHub (you can report bugs here, too)
-        https://github.com/choroba/statistics-krippendorff
+    CPAN Ratings
+        https://cpanratings.perl.org/d/Statistics-Krippendorff
+
+    RT, CPAN's request tracker (bugs could be reported here, too)
+        https://rt.cpan.org/NoAuth/Bugs.html?Dist=Statistics-Krippendorff
+
 
 
 LICENSE AND COPYRIGHT
