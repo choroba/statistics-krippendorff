@@ -81,7 +81,15 @@ sub delta_nominal($, $s1, $s2) { $s1 eq $s2 ? 0 : 1 }
 
 sub delta_interval($, $v0, $v1) { ($v0 - $v1) ** 2 }
 
-sub jaccard_index($, $s1, $s2) {
+sub delta_ordinal($self, $v0, $v1) {
+    my ($from, $to) = sort { $a <=> $b } $v0, $v1;
+    (sum(map $self->frequency($_), $from .. $to)
+     - ($self->frequency($from) + $self->frequency($to))/ 2) ** 2
+}
+
+sub delta_ratio($self, $v0, $v1) { (($v0 - $v1) / ($v0 + $v1)) ** 2}
+
+sub delta_jaccard($, $s1, $s2) {
     my @s1 = split /,/, $s1;
     my @s2 = split /,/, $s2;
 
@@ -226,13 +234,18 @@ Used for nominal data, i.e. labels with no ordering.
 Used for numeric values that are ordered, but can't be used in mathematical
 operations, for example number of stars in a movie rating system (we don't say
 that the distance from one star to two stars is the same as the distance from
-three starts to four stars).
+three starts to four stars). See the implementation on why C<$self> is needed
+as a parameter to delta.
 
 =head4 delta_interval
 
 Used for numeric values that can be used in mathematical operations.
 
-=head4 jaccard_index
+=head4 delta_ratio
+
+Used for non-negative numeric values (think degrees Kelvin).
+
+=head4 delta_jaccard
 
 This can be used when coders can specify more than one value. Join the values
 with commas; Jaccard index then uses the formula C<intersection_size /
