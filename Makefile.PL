@@ -3,24 +3,45 @@ use strict;
 use warnings;
 use ExtUtils::MakeMaker;
 
+my $lib_file = 'lib/Statistics/Krippendorff.pm';
+sub extract_version {
+    open my $F, '<', $lib_file or die $!;
+    /^our \$VERSION = '(.*)'/ and return $1 while <$F>;
+}
+
 my %WriteMakefileArgs = (
     NAME             => 'Statistics::Krippendorff',
     AUTHOR           => q{E. Choroba <choroba@cpan.org>},
     VERSION_FROM     => 'lib/Statistics/Krippendorff.pm',
     ABSTRACT_FROM    => 'lib/Statistics/Krippendorff.pm',
     LICENSE          => 'artistic_2',
-    MIN_PERL_VERSION => '5.006',
+    MIN_PERL_VERSION => '5.026',
     CONFIGURE_REQUIRES => {
         'ExtUtils::MakeMaker' => '0',
     },
     TEST_REQUIRES => {
-        'Test::More' => '0',
+        'Test2::V0' => '0',
     },
     PREREQ_PM => {
-        #'ABC'              => '1.6',
-        #'Foo::Bar::Module' => '5.0401',
+        'Moo' => 0,
+        'namespace::clean' => 0,
+        'List::Util' => 0,
+        'FindBin' => 0,
+        'strict' => 0,
+        'warnings' => 0,
+        'experimental' => 0,
     },
-    dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
+    META_MERGE => {
+        'meta-spec' => {version => 2},
+        dynamic_config => 0,
+        resources => {repository => {
+            type => 'git',
+            url => 'https://github.com/choroba/statistics-krippendorff.git',
+            web => 'https://github.com/choroba/statistics-krippendorff'}},
+        provides => { 'Statistics::Krippendorff' => {
+            file => $lib_file,
+            version => extract_version()}}},
+    dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', TAR => 'ptar'},
     clean => { FILES => 'Statistics-Krippendorff-*' },
 );
 
