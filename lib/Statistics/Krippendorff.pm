@@ -43,20 +43,26 @@ has _expected   => (is => 'lazy',
                     builder => '_build_expected');
 
 sub alpha($self) {
-    my $d_o = sum(map {
+    my $alpha = 1 - $self->d_o / $self->d_e;
+    return $alpha
+}
+
+sub d_o($self) {
+    return sum(map {
         my $v = $_;
         map {
             $self->coincidence->{$v}{$_} * $self->delta->($self, $v, $_)
         } $self->vals
-    } $self->vals);
-    my $d_e = sum(map {
+    } $self->vals)
+}
+
+sub d_e($self) {
+    return sum(map {
         my $v = $_;
         map {
             $self->_expected->{$v}{$_} * $self->delta->($self, $v, $_)
         } $self->vals
-    } $self->vals);
-    my $alpha = 1 - $d_o / $d_e;
-    return $alpha
+    } $self->vals)
 }
 
 sub vals($self) { @{ $self->_vals } }
@@ -287,6 +293,14 @@ frequencies).
 =head2 vals
 
 Returns a sorted list of all the possible values.
+
+=head2 d_o
+
+Returns the observed disagreement.
+
+=head2 d_e
+
+Returns the disagreement expected by chance.
 
 =head1 AUTHOR
 
