@@ -6,6 +6,10 @@ README
 t/00-load.t
 t/01-deltas.t
 t/02-example.t
-t/manifest.t
-t/pod-coverage.t
-t/pod.t
+t/03-is_valid.t
+t/04-jaccard.t
+xt/changes.t
+xt/manifest.t
+xt/pod.t
+xt/pod-coverage.t
+xt/version.t
