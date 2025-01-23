@@ -1,11 +1,11 @@
 #!/usr/bin/perl
 use warnings;
 use strict;
-use Test::More;
+use Test2::V0;
 
 use Statistics::Krippendorff ();
 
-plan(tests => 3);
+plan(3);
 
 my $code_version = $Statistics::Krippendorff::VERSION;
 ok($code_version, 'version set');

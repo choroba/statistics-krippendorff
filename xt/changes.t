@@ -3,9 +3,10 @@ use warnings;
 use strict;
 
 use FindBin;
-use Test::More tests => 5;
-use Statistics::Krippendorff ();
+use Test2::V0;
+plan(5);
 
+use Statistics::Krippendorff ();
 
 my $version = $Statistics::Krippendorff::VERSION;
 ok $version, 'version';

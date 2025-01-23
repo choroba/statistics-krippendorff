@@ -2,12 +2,13 @@
 use 5.006;
 use strict;
 use warnings;
-use Test::More;
+use Test2::V0;
 
 plan tests => 1;
 
-BEGIN {
-    use_ok( 'Statistics::Krippendorff' ) || print "Bail out!\n";
-}
+use Statistics::Krippendorff ();
+
+my $sk = 'Statistics::Krippendorff'->new(units => [[1,2]]);
+ok $sk, 'Instantiates';
 
 diag( "Testing Statistics::Krippendorff $Statistics::Krippendorff::VERSION, Perl $], $^X" );
