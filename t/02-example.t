@@ -64,7 +64,4 @@ subtest_buffered krippendorf_1980 => sub {
     $sk->delta(\&Statistics::Krippendorff::delta_ratio);
     is $sk->alpha, float(0.797, precision => 3),
         'ratio';
-
-
-
 };
