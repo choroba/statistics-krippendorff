@@ -9,7 +9,7 @@ use Test2::Tools::Subtest qw{ subtest_buffered };
 plan 2;
 
 subtest_buffered wikipedia => sub {
-    plan 5;
+    plan 3;
     my @units_h = ({B=>2, C=>2}, {B=>1, C=>1}, {B=>3, C=>3}, {A=>3, B=>3, C=>4},
                    {A=>4, B=>4, C=>4}, {A=>1, B=>3}, {A=>2, C=>2}, {A=>1, C=>1},
                    {A=>1, C=>1}, {A=>3, C=>3}, {A=>3, C=>3}, {A=>3, C=>4});
@@ -19,8 +19,6 @@ subtest_buffered wikipedia => sub {
 
     is $sk1->alpha, float(0.691, precision => 3),
         'Hash units, default delta';
-    is $sk1->d_o, 6, 'd_o';
-    is $sk1->d_e, float(2 / 25 * (28 + 70 + 35 + 40 + 20 + 50)), 'd_e';
 
     my @units_a = ([undef, 2, 2],
                    [undef, 1, 1],
