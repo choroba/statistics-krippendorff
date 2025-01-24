@@ -348,6 +348,10 @@ L<https://rt.cpan.org/NoAuth/Bugs.html?Dist=Statistics-Krippendorff>
 
 =head1 ACKNOWLEDGEMENTS
 
+Implementation inspired by
+L<Wikipedia|https://en.wikipedia.org/wiki/Krippendorff%27s_alpha>,
+additional tests taken from
+L<https://www.infoamerica.org/documentos_pdf/kripen.pdf>.
 
 =head1 LICENSE AND COPYRIGHT
 
