@@ -61,7 +61,7 @@ subtest_buffered krippendorf_1980 => sub {
 
     $sk->delta(\&Statistics::Krippendorff::delta_ordinal);
     is $sk->alpha, float(0.815, precision => 3),
-        'oridnal';
+        'ordinal';
 
     $sk->delta(\&Statistics::Krippendorff::delta_ratio);
     is $sk->alpha, float(0.797, precision => 3),
