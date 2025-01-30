@@ -6,7 +6,7 @@ use Statistics::Krippendorff;
 
 use Test2::V0;
 use Test2::Tools::Subtest qw{ subtest_buffered };
-plan 2;
+plan 3;
 
 subtest_buffered wikipedia => sub {
     plan 3;
@@ -64,4 +64,18 @@ subtest_buffered krippendorf_1980 => sub {
     $sk->delta(\&Statistics::Krippendorff::delta_ratio);
     is $sk->alpha, float(0.797, precision => 3),
         'ratio';
+};
+
+subtest_buffered stackexchange_stats_511927 => sub {
+    plan 2;
+
+    my @units = (['f,s', 'f', 's,e,m'],
+                 ['s', 's', 's,e']);
+    my $sk = 'Statistics::Krippendorff'->new(
+        units => \@units,
+        delta => \&Statistics::Krippendorff::delta_jaccard);
+    is $sk->alpha, float(0.152, precision => 3);
+
+    $sk->delta(\&Statistics::Krippendorff::delta_masi);
+    is $sk->alpha, float(0.1296, precision => 4);  # nltk would say 0.1297
 };

@@ -18,7 +18,7 @@ use experimental qw( signatures );
 
 our $VERSION = '0.01';
 
-use List::Util qw{ sum };
+use List::Util qw{ min sum };
 
 use namespace::clean;
 
@@ -100,6 +100,26 @@ sub delta_jaccard($, $s1, $s2) {
     @intersection{@s1} = ();
 
     return 1 - (grep exists $intersection{$_}, @s2) / keys %union
+}
+
+sub delta_masi($, $v0, $v1) {
+        my @v0 = split /,/, $v0;
+        my @v1 = split /,/, $v1;
+        my %union;
+        @union{ @v0, @v1 } = ();
+        my $union = keys %union;
+
+        my %intersection;
+        @intersection{ @v0 } = ();
+        my $intersection = grep exists $intersection{$_}, @v1;
+
+        # Python's nltk uses 0.67 and 0.33 which gives a different result for
+        # precission 4.
+        my $m = (@v0 == @v1 && @v0 == $intersection)         ? 1
+              : $intersection == min(scalar @v0, scalar @v1) ? 2 / 3
+              : $intersection > 0                            ? 1 / 3
+              :                                                0;
+        return 1 - $intersection / $union * $m
 }
 
 sub _units_array2hash($units) {
@@ -252,6 +272,13 @@ with commas; Jaccard index then uses the formula C<intersection_size /
 union_size>. If you sort the values before joining them, the expected
 coincidence matrix is smaller and the algorithm runs faster, but the resulting
 coefficient should be the same.
+
+=head4 delta_masi
+
+The weighted metric for measuring agreement on set-valued items introduced by
+R. Passonneau (2006). Use comma separated values as above in C<delta_jaccard>.
+Note that the Python implementation in L<nltk|https://www.nltk.org> uses the
+weights rounded with precision 2, so the resutls might be slightly different.
 
 =head2 alpha
 
