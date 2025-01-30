@@ -87,7 +87,7 @@ sub delta_ordinal($self, $v0, $v1) {
      - ($self->frequency($from) + $self->frequency($to))/ 2) ** 2
 }
 
-sub delta_ratio($self, $v0, $v1) { (($v0 - $v1) / ($v0 + $v1)) ** 2}
+sub delta_ratio($, $v0, $v1) { (($v0 - $v1) / ($v0 + $v1)) ** 2}
 
 sub delta_jaccard($, $s1, $s2) {
     my @s1 = split /,/, $s1;
