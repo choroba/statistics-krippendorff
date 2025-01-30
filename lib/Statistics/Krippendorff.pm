@@ -26,7 +26,12 @@ has units       => (is       => 'ro',
                     required => 1,
                     coerce   => \&_units_array2hash);
 
-has delta       => (is => 'rw', default => sub { \&delta_nominal });
+has delta       => (is      => 'rw',
+                    default => sub { \&delta_nominal },
+                    trigger => sub ($self, $d) {
+                        $self->delta($self->_deltas->{$d})
+                            if exists $self->_deltas->{$d};
+                    });
 
 has coincidence => (is => 'lazy', init_arg => undef);
 
@@ -41,6 +46,17 @@ has _frequency  => (is => 'lazy',
 has _expected   => (is => 'lazy',
                     init_arg => undef,
                     builder => '_build_expected');
+
+has _deltas     => (is => 'ro',
+                    init_arg => undef,
+                    default => sub { +{
+                        nominal  => \&delta_nominal,
+                        interval => \&delta_interval,
+                        ordinal  => \&delta_ordinal,
+                        ratio    => \&delta_ratio,
+                        jaccard  => \&delta_jaccard,
+                        masi     => \&delta_masi
+                    } });
 
 sub alpha($self) {
     my $d_o = sum(map {
@@ -192,7 +208,7 @@ sub _build_expected($self) {
                {coder2 => 3, coder3 => 2});
   my $sk = 'Statistics::Krippendorff'->new(units => \@units);
   my $alpha1 = $sk->alpha;
-  $sk->delta(\&Statistics::Krippendorff::delta_nominal);  # Same as default.
+  $sk->delta('nominal');  # Same as default.
   my $alpha2 = $sk->alpha;
 
   my $ski = 'Statistics::Krippendorff'->new(
@@ -206,7 +222,7 @@ sub _build_expected($self) {
 
   my $sk = 'Statistics::Krippendorff'->new(
                units => \@units,
-               delta => \&Statistics::Krippendorff::delta_nominal);
+               delta => 'nominal');
 
 The constructor. It accepts the following named arguments:
 
@@ -243,7 +259,7 @@ to validate this precondition, call C<is_valid>.
 An optional argument defaulting to delta_nominal. You can specify any function
 C<f($self, $v1, $v2)> that compares the two values C<$v1> and C<$v2> and
 returns their distance (a number between 0 and 1). Several common methods are
-predefined:
+predefined, you can use a code reference like C<&Statistics::Krippendorff::delta_nominal> or just a string C<nominal>:
 
 =head4 delta_nominal
 
@@ -289,6 +305,7 @@ Returns Krippendorff's alpha.
 =head2 delta
 
   $sk->delta(sub($self, $v1, $v2) {});
+  $sk->delta('jaccard');
 
 The difference function used to calculate the alpha. You can specify it in the
 constructor (see above), but you can later change it so something else, too.

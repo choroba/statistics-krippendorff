@@ -72,10 +72,9 @@ subtest_buffered stackexchange_stats_511927 => sub {
     my @units = (['f,s', 'f', 's,e,m'],
                  ['s', 's', 's,e']);
     my $sk = 'Statistics::Krippendorff'->new(
-        units => \@units,
-        delta => \&Statistics::Krippendorff::delta_jaccard);
+        units => \@units, delta => 'jaccard');
     is $sk->alpha, float(0.152, precision => 3);
 
-    $sk->delta(\&Statistics::Krippendorff::delta_masi);
+    $sk->delta('masi');
     is $sk->alpha, float(0.1296, precision => 4);  # nltk would say 0.1297
 };
