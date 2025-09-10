@@ -361,10 +361,6 @@ You can also look for information at:
 
 L<https://github.com/choroba/statistics-krippendorff>
 
-=item * CPAN Ratings
-
-L<https://cpanratings.perl.org/d/Statistics-Krippendorff>
-
 =item * Search CPAN
 
 L<https://metacpan.org/release/Statistics-Krippendorff>
