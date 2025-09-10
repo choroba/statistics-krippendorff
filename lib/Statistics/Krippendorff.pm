@@ -4,7 +4,7 @@ Statistics::Krippendorff - Calculate Krippendorff's alpha
 
 =head1 VERSION
 
-Version 0.03
+Version 0.04
 
 =cut
 
@@ -16,7 +16,7 @@ use Moo;
 
 use experimental qw( signatures );
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 use List::Util qw{ min sum };
 
