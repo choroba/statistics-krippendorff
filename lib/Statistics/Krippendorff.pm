@@ -129,8 +129,6 @@ sub delta_masi($, $v0, $v1) {
         @intersection{ @v0 } = ();
         my $intersection = grep exists $intersection{$_}, @v1;
 
-        # Python's nltk uses 0.67 and 0.33 which gives a different result for
-        # precission 4.
         my $m = (@v0 == @v1 && @v0 == $intersection)         ? 1
               : $intersection == min(scalar @v0, scalar @v1) ? 2 / 3
               : $intersection > 0                            ? 1 / 3
@@ -302,8 +300,6 @@ coefficient should be the same.
 
 The weighted metric for measuring agreement on set-valued items introduced by
 R. Passonneau (2006). Use comma separated values as above in C<delta_jaccard>.
-Note that the Python implementation in L<nltk|https://www.nltk.org> uses the
-weights rounded with precision 2, so the resutls might be slightly different.
 
 =head2 alpha
 
